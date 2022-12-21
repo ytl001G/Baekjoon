@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <algorithm>
 
 #define FASTIO ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define ll long long int
@@ -15,19 +15,33 @@ int main() {
 
     iin(n);
 
-    set<int> s;
+    int *s = new int[n];
 
-    loop(n){
-        iin(a);
-        s.insert(a);
-    }
+    FOR(i,0,n)
+        cin >> s[i];
+
+    sort(s, s+n);
 
     iin(m);
 
-    loop(m){
+    FOR(i,0,m){
+        int left = -1;
+        int right = n;
         iin(a);
-        if (s.find(a) != s.end()) cout << 1 << " ";
-        else cout << 0 << " ";
+
+        while (left+1<right){
+            int mid = (left + right)/2;
+
+            if (s[mid] > a) right = mid;
+            else if (s[mid] < a) left = mid;
+            else {
+                cout << 1 << " ";
+                break;
+            }
+        }
+
+        if (left+1 == right)
+            cout << 0 << " ";
     }
 
     return 0;

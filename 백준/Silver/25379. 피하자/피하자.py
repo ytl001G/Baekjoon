@@ -9,7 +9,7 @@ if len(A) == 1:
     print(0)
 else:
     while r < len(A):
-        if A[l]&1 != A[r]&1:
+        if A[0]&1 != A[r]&1:
             r += 1
         else:
             ans += r-l-1

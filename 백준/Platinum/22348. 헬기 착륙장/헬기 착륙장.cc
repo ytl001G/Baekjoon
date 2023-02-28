@@ -34,10 +34,6 @@ void solve(){
     }
     
     printf("%d\n", ans);
-    
-    for (int n = 1; n <= m; n++){
-        memset(dp[n], 0, 4 * (a+1));
-    }
 }
 
 int main()

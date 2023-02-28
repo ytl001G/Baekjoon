@@ -12,8 +12,13 @@ void solve(){
     
     dp[0][0] = 1;
     
+    int m = 0;
+    while (m * (m+1) / 2 < a+b){
+        m++;
+    }
+    
     int ans = 0;
-    for (int n = 1; n <= 1000; n++){
+    for (int n = 1; n <= m; n++){
         for (int r = 0; r <= a; r++){
             if (n * (n+1) / 2 - r > b) continue;
             
@@ -30,7 +35,7 @@ void solve(){
     
     printf("%d\n", ans);
     
-    for (int n = 1; n <= 1000; n++){
+    for (int n = 1; n <= m; n++){
         memset(dp[n], 0, 4 * (a+1));
     }
 }

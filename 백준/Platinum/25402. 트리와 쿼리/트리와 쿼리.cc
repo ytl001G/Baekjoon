@@ -5,24 +5,13 @@ using namespace std;
 int N, Q;
 vector<int> S;
 vector<vector<int>> graph;
+bool in_S[250001];
 
 int dfs(int start, int parent){
     int c = 1;
     
     for (int child : graph[start]){
-        bool good = false;
-        
-        for (int x : S){
-            if (x == child){
-                good = true;
-            }
-        }
-
-        if (child == parent){
-            good = false;
-        }
-        
-        if (good){
+        if (in_S[child] && child != parent){
             // printf("dfs(%d)", child);
             c += dfs(child, start);
         }
@@ -42,6 +31,8 @@ void solve(){
         int x;
         cin >> x;
         S.push_back(x);
+        
+        in_S[x] = 1;
     }
     
     int cnt = 0;
@@ -51,6 +42,8 @@ void solve(){
     }
     
     printf("%d\n", cnt/2);
+    
+    memset(in_S, 0, sizeof(in_S));
 }
 
 int main()
